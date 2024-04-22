@@ -8,6 +8,12 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+pdfplumber = "^0.11.0"
+pymupdf = "^1.24.2"
+llama-parse = "^0.4.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.0"
 
 
 [build-system]
