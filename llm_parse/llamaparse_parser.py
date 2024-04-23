@@ -1,14 +1,8 @@
-from enum import StrEnum
 from typing import Union, List, Optional
 
 from llama_parse import LlamaParse
 
 from llm_parse.base import BaseParser
-
-
-class ResultType(StrEnum):
-    Markdown = "markdown"
-    Text = "text"
 
 
 class LlamaParseParser(BaseParser):

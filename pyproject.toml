@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "llm-parse"
-version = "0.1.1"
+version = "0.1.2"
 description = "Parse data from documents optimised for downstream llm tasks."
 authors = ["tanchangsheng <tancs1994@hotmail.com>"]
 license = "MIT"
