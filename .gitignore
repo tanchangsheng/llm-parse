@@ -4,10 +4,14 @@ __pycache__/
 # Environments
 .env
 
+# Distribution / packaging
+dist/
+
 # PyCharm
 .idea/
 
 # Jupyter Notebook
 .ipynb_checkpoints
 
+# Mac device
 .DS_Store
