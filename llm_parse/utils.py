@@ -74,12 +74,12 @@ def merge_bold(text: str) -> str:
     the whole line can be grouped as a single group of bold text.
 
     Regex explanation
-    - ^(\*{2}[^*]*\*{2}[ \r\t\f]*)+:
+    - ^([ \r\t\f]*\*{2}[^*]*\*{2}[ \r\t\f]*)+:
         - ^: Starts with this group.
-        - \*{2}[^*]*\*{2}: Matches text enclosed within **.
         - [ \r\t\f]*: Matches zero or more whitespace characters except \n.
+        - \*{2}[^*]*\*{2}: Matches text enclosed within **.
         - +: Matches one or more of this group.
-    - \*{2}[^*]*\*{2}$: Ends with text enclosed within **.
+    - (\*{2}[^*]*\*{2}[ \r\t\f]*)$: Ends with text enclosed within **.
 
     Args:
         text: Text string to process.
@@ -90,10 +90,11 @@ def merge_bold(text: str) -> str:
 
     def remove_stars(match):
         matched_group = match.group(0)
+        matched_group = matched_group.strip()
         replaced_group = matched_group.replace("*", "")
         return f"**{replaced_group}**"
 
-    pattern = r"^(\*{2}[^*]*\*{2}[ \r\t\f]*)+\*{2}[^*]*\*{2}$"
+    pattern = r"^([ \r\t\f]*\*{2}[^*]*\*{2}[ \r\t\f]*)+(\*{2}[^*]*\*{2}[ \r\t\f]*)$"
     pattern = re.compile(pattern, re.MULTILINE)
     text = re.sub(pattern, remove_stars, text)
 
