@@ -1,7 +1,13 @@
-import pdfplumber
+import logging
+
+from pypdf import PdfReader
 
 from llm_parse.base import BaseParser
-from llm_parse.utils import remove_non_printable, compress_multiline
+from llm_parse.utils import remove_non_printable
+
+# to suppress unnecessary pypdf logs
+logger = logging.getLogger("pypdf")
+logger.setLevel(logging.ERROR)
 
 
 class PDF2TextParser(BaseParser):
@@ -27,8 +33,8 @@ class PDF2TextParser(BaseParser):
     """
 
     def load_data(
-            self,
-            file_path: str,
+        self,
+        file_path: str,
     ) -> str:
         """
         Full raw text data is extracted from the PDF, including headers, footers, tables etc.
@@ -44,12 +50,14 @@ class PDF2TextParser(BaseParser):
         Returns:
             str: Text extracted from file.
         """
+
+        reader = PdfReader(file_path)
+
         text = ""
-        with pdfplumber.open(file_path) as pdf:
-            pages = pdf.pages
-            for p in pages:
-                text += p.extract_text()
+        for i in range(len(reader.pages)):
+            page = reader.pages[i]
+            text += page.extract_text()
 
         text = remove_non_printable(text)
-        text = compress_multiline(text)
+
         return text
