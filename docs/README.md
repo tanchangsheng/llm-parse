@@ -1,3 +1,4 @@
+theme: jekyll-theme-minimal
 # LLM Parse
 
 LLM Parse is a Python library designed for parsing and extracting data from files, specifically optimized for 
