@@ -30,18 +30,3 @@ from llm_parse.pdf_2_text_parser import PDF2TextParser
 parser = PDF2TextParser()
 text = parser.load_data("example.pdf")
 ```
-
-Using LlamaParse parser.
-```python
-from llm_parse.llamaparse_parser import LlamaParseParser
-
-# can use any args for LlamaParse. ref: https://github.com/run-llama/llama_parse?tab=readme-ov-file#getting-started
-parser = LlamaParseParser(
-    api_key="llx-...",  # can also be set in your env as LLAMA_CLOUD_API_KEY
-    result_type="markdown",  # "markdown" and "text" are available
-    num_workers=4,  # if multiple files passed, split in `num_workers` API calls
-    verbose=True,
-    language="en",  # Optionally you can define a language, default=en
-)
-text = parser.load_data("example.pdf")
-```
